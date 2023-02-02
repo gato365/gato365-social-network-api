@@ -2,3 +2,9 @@ node
 npm start
 npm i
 npm run
+npm init
+
+
+Node packasges
+mongoose
+nodmon
