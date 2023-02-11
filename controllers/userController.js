@@ -33,7 +33,7 @@ const reactionCount = async (thoughtId) => {
 
 module.exports = {
     // Create User
-    CreateUser(req, res) {
+    createUser(req, res) {
         User.create(req.body)
             .then((user) => res.json(user))
             .catch((err) => {
@@ -117,5 +117,41 @@ module.exports = {
                 res.status(500).json(err)
             });
 
-        },
-    };
+    },
+    // Add Friend
+    addFriend(req, res) {
+        console.log('You are adding a friend');
+        console.log(req.body);
+        User.findOneAndUpdate(
+            { _id: req.params.id },
+            { $addToSet: { friends: req.body.friendId } },
+            { new: true, runValidators: true }
+        )
+            .then((user) =>
+                !user
+                    ? res.status(404)
+                    .json({ message: 'No user found with this id!' })
+                    : res.json(user)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
+
+    // Remove Friend
+    removeFriend(req, res) {
+        console.log('You are removing a friend');
+        console.log(req.body);
+        User.findOneAndUpdate(
+            { _id: req.params.id },
+            { $pull: { friends: req.body.friendId } },
+            { new: true, runValidators: true }
+        )
+            .then((user) =>
+                !user
+                    ? res.status(404)
+                    .json({ message: 'No user found with this id!' })
+                    : res.json(user)
+            )
+            .catch((err) => res.status(500).json(err));
+    }
+    
+};
