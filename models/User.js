@@ -16,13 +16,20 @@ const userSchema = new Schema(
             unique: true,
             match: [/.+@.+\..+/]
         },
+        // Array of _id values referencing the Thought model
         thoughts: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Thought'
             }
         ],
-        friends: [friendSchema]
+        // Array of _id values referencing the User model (self-reference)
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ]
     },
     {
         toJSON: {},
