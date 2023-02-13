@@ -1,5 +1,5 @@
 // State the Schema and Types for the User model
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 // State the Schema and Types for the User model
 const userSchema = new Schema(

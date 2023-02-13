@@ -1,5 +1,6 @@
 // Declare Schema and Types from Mongoose
-const { Schema, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reaction');
 
 
 const thoughtSchema = new Schema(

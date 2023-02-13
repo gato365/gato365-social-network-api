@@ -1,5 +1,5 @@
 // Get Schema and Types from Mongoose
-const { Schema, Types } = require('mongoose');
+const { Schema, Types, model } = require('mongoose');
 
 // Create a reactionSchema
 const reactionSchema = new Schema(
