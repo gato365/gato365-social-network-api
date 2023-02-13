@@ -19,4 +19,6 @@ module.exports = {
             .then((thoughts) => res.json(thoughts))
             .catch((err) => res.status(500).json(err));
     }
+
+
 };
