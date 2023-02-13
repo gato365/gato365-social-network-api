@@ -12,7 +12,7 @@ connection.once('open', async () => {
   // Delete all users, thoughts, and reactions
   await User.deleteMany({});
   await Thought.deleteMany({});
-  await Reaction.deleteMany({});
+  
 
 
   const usernames = ['cindypineapple', 'dopeydolphins'];
