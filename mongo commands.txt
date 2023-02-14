@@ -1,2 +1,14 @@
-mongod - to run mongo database server
-mongo
+
+1. mongod - to run mongo database server
+2. mongo -  to get into terminal of mongo database server (in another terminal, keep mongod running)
+
+Within Mongo terminal
+  a)  show dbs - to show all the databases
+  b) use <database_name> - to use a database
+  c) show collections - to show all the collections in the database
+  d)  db.<collection_name>.insertOne({<document>}) - to insert a document in the collection
+  e) db.<collection_name>.find() - to show all the documents in the collection
+    f) db.<collection_name>.find({<query>}) - to show all the documents in the collection which matches the query
+    g) db.<collection_name>.find({<query>}).pretty() - to show all the documents in the collection which matches the query in a pretty format
+
+3. In this current challenge the database structure is created in the utils directory. so we need to run the following command in the terminal to create the database structure - node utils/d.js
