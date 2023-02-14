@@ -59,15 +59,15 @@ module.exports = {
 
     // Find User by ID
     getSinlgeUser(req, res) {
-        User.findOne({ _id: req.params.id })
+        User.find({ _id: req.params.id })
             .select('-__v')
             .then(async (user) =>
                 !user
                     ? res.status(404).json({ message: 'No user found with this id!' })
                     : res.json({
                         user,
-                        friendCount: await friendCount(users._id),
-                        reactionCount: await reactionCount(users._id)
+                        friendCount: await friendCount(user._id),
+                        reactionCount: await reactionCount(user._id)
                     })
             )
             .catch((err) => {

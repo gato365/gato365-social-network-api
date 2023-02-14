@@ -10,5 +10,9 @@
   e) db.<collection_name>.find() - to show all the documents in the collection
   f) db.<collection_name>.find({<query>}) - to show all the documents in the collection which matches the query
  g) db.<collection_name>.find({<query>}).pretty() - to show all the documents in the collection which matches the query in a pretty format
+ h) db.<collection_name>.find({<query>}).count() - to show the count of all the documents in the collection which matches the query
+
+Query based on id in Mongo
+db.users.find({_id: ObjectId("63eb80ad4a4326a0a10b3d23")})
 
 4. In this current challenge the database structure is created in the utils directory. so we need to run the following command in the terminal to create the database structure - node utils/d.js
