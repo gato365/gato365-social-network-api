@@ -51,6 +51,15 @@ createReaction(req, res) {
         .catch((err) => res.status(500).json(err));
 },
 // Delete a reaction
+deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
+        { new: true }
+    )
+        .then((thought) => res.json(thought))
+        .catch((err) => res.json(err));
+}
         
 
 };
