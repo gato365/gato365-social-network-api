@@ -21,7 +21,9 @@ module.exports = {
     },
     //Delete Thought
     deleteThought(req, res) {
-        Thought.findOneAndDelete({ _id: req.params.thoughtId })
+        Thought.findOneAndDelete({ 
+            _id: req.params.thoughtId 
+        })
             .then((thought) => {
                 if (!thought) {
                     res.status(404).json({ message: 'No thought found with this id!' });
@@ -30,7 +32,25 @@ module.exports = {
                 res.json(thought);
             })
             .catch((err) => res.status(500).json(err));
-    }
+    },
 
+// Create a reaction
+createReaction(req, res) {
+    Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $push: { reactions: req.body } },
+        { new: true, runValidators: true }
+    )
+        .then((thought) => {
+            if (!thought) {
+                res.status(404).json({ message: 'No thought found with this id!' });
+                return;
+            }
+            res.json(thought);
+        })
+        .catch((err) => res.status(500).json(err));
+},
+// Delete a reaction
+        
 
 };
