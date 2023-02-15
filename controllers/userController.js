@@ -96,21 +96,13 @@ module.exports = {
     // Delete User by ID
     deleteUser(req, res) {
         User.findOneAndRemove({ _id: req.params.id })
-            .then((user) =>
-                !user
-                    ? res.status(404).json({ message: 'No user found with this id!' })
-                    : User.findOneAndUpdate(
-                        { _id: { $in: user.friends } },
-                        { $pull: { friends: user._id } },
-                        { new: true }
-                    )
-            )
-            .then((user) =>
-                !user
-                    ? res.status(404).json({
-                        message: 'No user found with this id!'
-                    })
-                    : res.json({ message: 'User deleted!' })
+            .then((user) => {
+                if (!user) {
+                    return res.status(404).json({ message: 'No user found with this id!' });
+                }
+            })
+            .then(() =>
+                res.json({ message: 'User deleted!' })
             )
             .catch((err) => {
                 console.log(err);
@@ -130,7 +122,7 @@ module.exports = {
             .then((user) =>
                 !user
                     ? res.status(404)
-                    .json({ message: 'No user found with this id!' })
+                        .json({ message: 'No user found with this id!' })
                     : res.json(user)
             )
             .catch((err) => res.status(500).json(err));
@@ -148,10 +140,10 @@ module.exports = {
             .then((user) =>
                 !user
                     ? res.status(404)
-                    .json({ message: 'No user found with this id!' })
+                        .json({ message: 'No user found with this id!' })
                     : res.json(user)
             )
             .catch((err) => res.status(500).json(err));
     }
-    
+
 };
