@@ -114,9 +114,10 @@ module.exports = {
     addFriend(req, res) {
         console.log('You are adding a friend');
         console.log(req.body);
+        console.log(req.params);
         User.findOneAndUpdate(
-            { _id: req.params.id },
-            { $addToSet: { friends: req.body.friendId } },
+            { _id: req.params.userId },
+            { $addToSet: { friends: req.params.friendId } },
             { new: true, runValidators: true }
         )
             .then((user) =>
