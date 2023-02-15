@@ -12,8 +12,10 @@ const {
 router.route('/').get(getAllThoughts).post(createThought);
 
 // /api/thoughts/:thoughtId
-router.route('/:thoughtId').delete(deleteThought).post(createReaction).delete(deleteReaction);
+router.route('/:thoughtId').delete(deleteThought).post(createReaction);
 
+// /api/thoughts/:thoughtId/reactions/:reactionId
+router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
 
 
 
